@@ -29,9 +29,9 @@ var paddleX=(canvas.width-paddleWidth)/2;
 var rightPressed= false;
 var leftPressed=false;
 var brickRowCount = 3;
-var brickColumnCount = 5;
+var brickColumnCount = 7;
 var brickWidth = 75;
-var brickHeight = 20;
+var brickHeight = 30;
 var brickPadding = 10;
 var brickOffsetTop = 30;
 var brickOffsetLeft = 30;
@@ -102,7 +102,7 @@ function drawBricks() {
     for(c=0; c<brickColumnCount; c++) {
         for(r=0; r<brickRowCount; r++) {
             if(bricks[c][r].status == 1) {
-                var brickX = (c*(brickWidth+brickPadding))+brickOffsetLeft;
+                var brickX = 120+(c*(brickWidth+brickPadding))+brickOffsetLeft;
                 var brickY = (r*(brickHeight+brickPadding))+brickOffsetTop;
                 bricks[c][r].x = brickX;
                 bricks[c][r].y = brickY;
@@ -126,7 +126,7 @@ function collisionDetection() {
                     b.status = 0;
                     score++;
                     if(score == brickRowCount*brickColumnCount) {
-                        alert("YOU WIN, CONGRATULATIONS!");
+                        alert("¡Ganaste!");
                         document.location.reload();
                     }
                 }
@@ -160,18 +160,22 @@ function draw(){
 			 }
         }
         else {
-            alert("GAME OVER");
+            alert("Perdiste :( gg noob");
             document.location.reload();
         }
     }
-    if (!pausa) {
-      if(rightPressed && paddleX<canvas.width-paddleWidth){
-    	   paddleX+=7;
-    		}else if(leftPressed && paddleX>0 ){
-    		    paddleX-=7;
-          }
-  		 x=x+dx;
-       y=y+dy;
+    if (pausa) {
+      ctx.font = "16px Consolas";
+      ctx.fillStyle = "#0095DD";
+      ctx.fillText("Pausa", canvas.width/2-18, canvas.height/2);
+     }else {
+       if(rightPressed && paddleX<canvas.width-paddleWidth){
+     	   paddleX+=5;
+     		}else if(leftPressed && paddleX>0 ){
+     		    paddleX-=5;
+           }
+   		 x=x+dx;
+        y=y+dy;
      }
 	}
   function aleatorio(a,b) {
