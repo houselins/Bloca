@@ -56,6 +56,7 @@ function mouseMoveHandler(e) {
         paddleX = relativeX - paddleWidth/2;
     }
 }
+var mausex=0;
 function keyDownHandler(e){
 	if(e.keyCode==39){
 
@@ -70,7 +71,6 @@ function keyDownHandler(e){
     if(e.keyCode==80){
 
   		pausa=!pausa;
-
     }
 	}
 
@@ -97,13 +97,21 @@ function drawBall(){
 	ctx.closePath();
 	}
 
-function drawPaddle(){
-	ctx.beginPath();
-	ctx.rect(paddleX,canvas.height-paddleHeight,paddleWidth,paddleHeight);
-	ctx.fillstyle="#0095DD";
-	ctx.fill();
-	ctx.closePath();
-	}
+function drawPaddle(pausa){
+  if(!pausa){
+  	ctx.beginPath();
+  	ctx.rect(paddleX,canvas.height-paddleHeight,paddleWidth,paddleHeight);
+  	ctx.fillstyle="#0095DD";
+  	ctx.fill();
+  	ctx.closePath();
+  }else{
+    ctx.beginPath();
+  	ctx.rect((canvas.width-paddleWidth)/2,canvas.height-paddleHeight,paddleWidth,paddleHeight);
+  	ctx.fillstyle="#0095DD";
+  	ctx.fill();
+  	ctx.closePath();
+  }
+}
 function drawBricks() {
     for(c=0; c<brickColumnCount; c++) {
         for(r=0; r<brickRowCount; r++) {
@@ -150,7 +158,7 @@ function draw(){
 	ctx.clearRect(0,0,canvas.width,canvas.height);
 	drawBricks();
 	drawBall();
-	drawPaddle();
+	drawPaddle(pausa);
   drawScore();
 	collisionDetection();
  if(x + dx > canvas.width-ballRadius || x + dx < ballRadius) {
