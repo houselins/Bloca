@@ -154,10 +154,10 @@ function draw(){
         dy = -dy;
     }
     else if(y + dy > canvas.height-ballRadius) {
-        if(x > paddleX && x < paddleX + paddleWidth) {
-			 if(y= y-paddleHeight){
-            dy = -dy  ;
-			 }
+        if(x > paddleX + ballRadius && x < paddleX + ballRadius + paddleWidth) {
+            if(y= y-paddleHeight){
+              dy = -dy  ;
+            }
         }
         else {
             alert("Perdiste :( gg noob");
